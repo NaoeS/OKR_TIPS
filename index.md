@@ -1,9 +1,10 @@
-- [Rails ガイドメモ](#rails-guide-memo)
-- [Rails リーディング](#rails-reading)
+- 目次
+  * [Rails ガイドメモ](#rails-guide-memo)
+  * [Rails リーディング](#rails-reading)
 
 <a name="rails-guide-memo"></a>
 
-# 🛤️Rails ガイドメモ
+# 🛤️ Rails ガイドメモ
 
 ## Active Record
 
@@ -91,7 +92,7 @@
 
 <a name="rails-reading"></a>
 
-# 🛤️Rails リーディング
+# 🛤️ Rails リーディング
 - 取り敢えずあたりだけ。一つに絞るつもり
 
 ## ActiveRecord::Persistence
