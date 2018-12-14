@@ -1,3 +1,8 @@
+[Rails ガイドメモ](#rails-guide-memo)
+[Rails リーディング](#rails-reading)
+
+<a name="rails-guide-memo"></a>
+
 # Rails ガイドメモ
 
 ## Active Record
@@ -83,3 +88,20 @@
 ### 2回目
 - 55/70 : 78%
   * 17, 23, 28, 32, 35, 43, 44, 50, 53, 55, 56, 57, 58, 66, 69
+
+<a name="rails-reading"></a>
+
+# Rails リーディング
+- 取り敢えずあたりだけ。一つに絞るつもり
+
+## ActiveRecord::Persistence
+
+### save
+
+## ActiveModel::Validations::ClassMethods
+
+### validate
+
+## ActiveSupport::Cache::Store
+
+### fetch
