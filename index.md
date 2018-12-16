@@ -49,6 +49,9 @@
 ### レイアウト
 - 多くのコントローラで共通して使用されるテンプレートのこと
 
+### その他
+- `<%= raw hoge %>` でエスケープされていない文字列を描画する
+
 ## ルーティング
 - `resources` メソッドで 7 つのルーティングが作成される
   * index, new, create, show, edit, update, destroy
@@ -106,13 +109,36 @@
 - `ERB` も対応しているため、動的なデータも作成できる
 - `ActiveRecord` のインスタンスなので、`users(:hoge)` で取得ができる。メソッドも使用可能
 
+## Action Mailer
+
+### 添付ファイル
+- `attachments` を使用する
+  * `attachments['filename.jpg'] = File.read('/path/to/filename.jpg')`
+  * 自動的に Base64 変換を行う
+  * `attachments.inline` を使用すれば、ビュー側で URL を参照したりできる
+
+### TO
+- 複数の相手に送信するには、`to:` にアドレスの配列やカンマ区切りの文字列を渡せばいい
+- メールアドレスではなく名前を表示させたい場合は、`to:` に `"#{name} <#{mail_address}>"` とする
+
+## Active Support
+
+### Numeric 拡張
+- 数値には以下のメソッドが応答する
+  * `bytes, kilobytes, megabytes, gigabytes, terabytes, petabytes, exabytes`
+
+### フォーマッティング
+- 数値は電話番号、通貨などにフォーマットできる
+  * `5551234.to_s(:phone) # 555-1234`
+
+
 ## 模擬1
 - 70問
   * [Rails技術者認定ブロンズ試験 模擬問題](https://www.school.ctc-g.co.jp/ruby/training_rails_bronze_01_10.html)
 
 ### 1回目
 - 44/70 : 62%
-  * 7, 11, 16, 19, 23, 24, 26, 31, 35, 36, 37, 38, 42, 43, 48, 50, 51, 53, 56, 57, 58, 59, 60, 65, 66, 69
+  * 7, 11, 16, 19, 23, 24, 26, 31, 35, 36, 37, 38, 42, 43, 48, 50, 51, 53, / 56, 57, 58, 59, 60, 65, 66, 69
 
 ### 2回目
 - 55/70 : 78%
