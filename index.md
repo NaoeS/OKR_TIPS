@@ -21,6 +21,16 @@
 - `create` はオブジェクト作成 & 永続化
 - `save!` , `update!` でバリデーションに失敗すると、 `ActiveRecord::RecordInvalid` が発生する
 
+### コールバック
+- `before_xxx` で　`false or 例外` を発生させると、以降の処理を止めることができる
+- 作成時
+  * b_vali -> a_vali -> b_save -> around_save -> b_create -> around_create -> a_create -> after_save
+- 更新時
+  * 作成時の create が update に変わるだけ
+- 削除時
+  * b_destroy -> around_destroy -> a_destroy
+    + `dependent: :destroy` より前に定義する。依存モデルが削除された時に `dependent` より前に発火すべきだから
+
 ### マイグレーション
 - 逆方向に実行 (ロールバック) する方法が推測できない場合は `reversible` を使う
 - `rails g model` すると勝手にマイグレーションファイルもできる
@@ -121,7 +131,18 @@
 - `ERB` も対応しているため、動的なデータも作成できる
 - `ActiveRecord` のインスタンスなので、`users(:hoge)` で取得ができる。メソッドも使用可能
 
+### システムテスト
+- バックグラウンドでは `Capybara` が動いている
+- 要素の内容を検証したいときは `assert_selector('h1', text: 'hoge')` のようにする
+- `click_on` メソッドでリンクを探して押下する
+- ドライバを変更したい時は `application_system_test_case.rb` の　　`driven_by` を変更する
+  * Selenium, Poltergeist などがある
+  * オプション例: `:using` (ブラウザ指定)、`:screen_size` (スクリーンショットのサイズ)、`:options` (ドライバでサポートされるオプション)
+- `take_screenhot` メソッドを実行すると実行した時点の SS が撮影できる
+
 ## Action Mailer
+### 基礎
+- メール内容のビューは `app/views/#{class_name}` に作成される
 
 ### 添付ファイル
 - `attachments` を使用する
@@ -150,7 +171,7 @@
 
 ### 1回目
 - 44/70 : 62%
-  * 7, 11, 16, 19, 23, 24, 26, 31, 35, 36, 37, 38, 42, 43, 48, 50, 51, 53, / 56, 57, 58, 59, 60, 65, 66, 69
+  * 7, 11, 16, 19, 23, 24, 26, 31, 35, 36, 37, 38, 42, 43, 48, 50, 51, 53, 56, 57, 58, 59, 60, 65, 66, 69
 
 ### 2回目
 - 55/70 : 78%
