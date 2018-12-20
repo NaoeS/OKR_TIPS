@@ -49,6 +49,17 @@
 ### レイアウト
 - 多くのコントローラで共通して使用されるテンプレートのこと
 
+### FormHelper
+- `f.text_field :hoge` のように `input type`, 項目名となる
+  * 出力された HTML の `name` には `#{modelname}[#{hoge}]` が出力される
+  * label, password_field, radio_button, text_area, email_field, url_field なども同様
+- `check_box('modelname', 'hoge')`でチェックボックスが出力できる
+- `fields_for` を使えばフォームタグが作成されないため、既存のフォーム内に別モデルを追加できる
+
+### FormOptionsHelper
+- 様々な種類のコンテナを1つのオプションタグにまとめる役割を持つ
+- TODO
+
 ### その他
 - `<%= raw hoge %>` でエスケープされていない文字列を描画する
 
@@ -72,6 +83,7 @@
 - `constraints: { id: /[A-Z]/}` で正規表現でパスをマッチさせれる
 - Unicode 文字列をそのままルーティングで使用することもできる。使うのか？
   * `get 'おはよう', to: 'goodmorning#index'`
+- `:member` は単一データに対して、`:collection` は全体に対してアクションを追加する時に使用する
 
 ## Unit Test
 
