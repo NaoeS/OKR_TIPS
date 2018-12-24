@@ -58,6 +58,8 @@
 
 ### レイアウト
 - 多くのコントローラで共通して使用されるテンプレートのこと
+- `app/views/layouts` に現在のコントローラ名のファイルがあるか探す⇢無ければ `application` が付くファイルを使用する
+- コントローラで `layout` メソッドを使用するとレイアウトを上書きできる
 
 ### FormHelper
 - `f.text_field :hoge` のように `input type`, 項目名となる
@@ -94,6 +96,14 @@
 - Unicode 文字列をそのままルーティングで使用することもできる。使うのか？
   * `get 'おはよう', to: 'goodmorning#index'`
 - `:member` は単一データに対して、`:collection` は全体に対してアクションを追加する時に使用する
+- リソースのネストは1回に留める。親リソースが必要ないアクションは切り出してしまうと良い。
+```
+# 例
+resources :articles do
+  resources :comments, only: [:index, :new, :create]
+end
+respirces :comments, only: [:show, :edit, :update, :destroy]
+```
 
 ## Unit Test
 
@@ -106,6 +116,7 @@
   * `hoge_test.rb:5` で行を指定可能
 - `Rails` では `rake test` で全テスト実行する
   * [参考](http://railsdoc.com/test)
+- コントローラのテストをする際は、HTTP メソッドに対応するメソッドを使用する `get :show, :id => @user.to_param`
 
 ### 忘れそうなマッチャ（Minitest::Assertions）
 - `assert_not_in_delta`
@@ -163,6 +174,11 @@
 ### フォーマッティング
 - 数値は電話番号、通貨などにフォーマットできる
   * `5551234.to_s(:phone) # 555-1234`
+
+### String 拡張
+- 文字列に `html_safe` を使用すると、安全な文字列としてマークされる。マークを単純に付加するためなので注意
+  * 普通は `raw` メソッドを使用するため、`html_safe` は使用しない
+  * 安全にした文字列に `+` で文字列を足すと、エスケープされた上で結合される
 
 
 ## 模擬1
